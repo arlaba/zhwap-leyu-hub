@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>pg模拟器 · 简明指南与访问提示</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+      background: #fbfbfb;
+      color: #222;
+      line-height: 1.7;
+      padding: 2rem 1.5rem;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .page {
+      max-width: 680px;
+      width: 100%;
+    }
+    /* 标题层级 */
+    h1 {
+      font-size: 2.2rem;
+      font-weight: 550;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+      margin: 0 0 0.2rem 0;
+      color: #121212;
+    }
+    .subhead {
+      font-size: 1rem;
+      color: #6b7280;
+      border-left: 3px solid #d1d5db;
+      padding-left: 1rem;
+      margin: 0.5rem 0 2rem 0;
+      font-style: normal;
+    }
+    h2 {
+      font-size: 1.35rem;
+      font-weight: 500;
+      margin: 2rem 0 0.75rem 0;
+      color: #1f2937;
+      border-bottom: 1px solid #e5e7eb;
+      padding-bottom: 0.3rem;
+    }
+    h3 {
+      font-size: 1.1rem;
+      font-weight: 500;
+      margin: 1.6rem 0 0.5rem 0;
+      color: #374151;
+    }
+    p {
+      margin: 0 0 1.2rem 0;
+      font-size: 1rem;
+      color: #2e2e2e;
+    }
+    .intro {
+      font-size: 1.05rem;
+      color: #3a3a3a;
+      margin-bottom: 1.8rem;
+    }
+    /* 引用框 */
+    .note {
+      background: #f3f4f6;
+      border-left: 4px solid #9ca3af;
+      padding: 1rem 1.3rem;
+      margin: 1.8rem 0;
+      border-radius: 0 6px 6px 0;
+    }
+    .note p {
+      margin: 0;
+      font-size: 0.95rem;
+      color: #374151;
+    }
+    .note strong {
+      font-weight: 600;
+    }
+    /* 引用提示 (blockquote) */
+    blockquote {
+      border-left: 3px solid #cbd5e1;
+      margin: 1.5rem 0;
+      padding: 0.6rem 1.2rem;
+      background: #fafafa;
+      color: #4b5563;
+      font-style: normal;
+    }
+    blockquote p {
+      margin: 0;
+    }
+    /* 链接样式 */
+    a {
+      color: #1f2937;
+      text-decoration: none;
+      border-bottom: 1px solid #cbd5e1;
+      transition: border-color 0.15s, color 0.15s;
+    }
+    a:hover {
+      border-bottom-color: #1f2937;
+      color: #111;
+    }
+    /* 分隔线 */
+    hr {
+      border: none;
+      border-top: 1px solid #e5e7eb;
+      margin: 2.2rem 0;
+    }
+    .footer-meta {
+      margin-top: 2.5rem;
+      font-size: 0.85rem;
+      color: #9ca3af;
+      border-top: 1px solid #ececec;
+      padding-top: 1.2rem;
+      text-align: left;
+    }
+    /* 响应式 */
+    @media (max-width: 540px) {
+      body { padding: 1.5rem 1rem; }
+      h1 { font-size: 1.8rem; }
+      .subhead { font-size: 0.9rem; padding-left: 0.8rem; }
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <h1>pg模拟器 &middot; 从启动到日常</h1>
+  <div class="subhead">一份关于环境初始设置与访问习惯的简明笔记</div>
+
+  <p class="intro">
+    如果你正在寻找一个轻量、可局部运行的游戏逻辑模拟环境，<a href="https://pg-gamesimulator.com">pg模拟器</a> 或许能提供一个实用起点。它的设计思路偏向于模块化配置，而非一键式黑箱，因此了解几个关键环节会让后续使用顺畅很多。
+  </p>
+
+  <h2>先理解它的边界</h2>
+  <p>
+    pg模拟器并非一个包罗万象的“全能沙箱”，它更接近一套可组合的规则引擎与数据模拟层。你可以在其中定义状态流、触发条件、资源变化曲线，也可以挂接外部数据源做快速原型。但要注意，模拟器的核心是“规则逻辑”而非“高保真渲染”——界面反馈以数据面板和日志为主，视觉表现并非它的长项。
+  </p>
+  <p>
+    初次接触时，建议花 15 分钟浏览内置的 demo 配置。这些样例覆盖了常见的回合判定、资源累积和分支事件，能帮助你快速建立对“配置-运行-观察”这一循环的直觉。
+  </p>
+
+  <h3>关于访问与网络环境</h3>
+  <p>
+    由于模拟器在加载部分远程资源（如规则库更新、示例包）时会依赖稳定的连接，建议在网络条件较好的时段进行首次完整加载。如果遇到页面响应缓慢，可以先检查本地缓存或尝试刷新——部分资源加载属于一次性行为，第二次访问通常会流畅很多。
+  </p>
+  <blockquote>
+    <p>“模拟器的运行逻辑完全在浏览器本地执行，但初始配置清单和部分社区示例从远端获取。这是它保持轻量的代价，也是你可以离线修改参数的基础。”</p>
+  </blockquote>
+
+  <h2>日常使用中容易忽略的几点</h2>
+  <p>
+    很多人打开界面后会直接进入参数面板，却忽略了左侧的“规则序列”视图。实际上，<strong>规则的顺序直接影响模拟结果</strong>——同样的条件，排在后面的规则可能被前面的结果覆盖。养成每次运行前快速浏览规则链的习惯，可以避免大量定位问题的时间。
+  </p>
+  <p>
+    另外，模拟器的导出功能不止一种格式。除了常见的 JSON 快照，你还可以选择“增量记录”，它只保存自上次导出以来的变量变动，适合长期跟踪模拟进程。这个功能藏在导出对话框的二级菜单里，第一次使用时容易错过。
+  </p>
+
+  <div class="note">
+    <p><strong>一个实用提醒：</strong> 若你在调试中发现某个变量始终无法达到预期值，不妨检查一下“全局覆盖”选项卡。模拟器允许设置最高优先级变量，它们会无视规则链直接锁定数值——这个设计本是为了测试边界条件，但有时会被忘记关闭。</p>
+  </div>
+
+  <h2>关于社区示例与再组合</h2>
+  <p>
+    pg模拟器 的作者和维护者在文档区提供了十几个场景模板，从简单的“资源采集-消耗”循环，到带随机事件的多角色模拟。这些模板不是标准答案，而是供你拆解和改造的素材。我自己的习惯是：先完整运行一次原始模板，然后逐条关闭规则，观察模拟结果如何一步步偏离，以此理解每条规则的实际影响。
+  </p>
+  <p>
+    如果你更喜欢从零开始，官方 wiki 里有一篇“最小模拟配置”指南，只用了 7 条规则就构建了一个可交互的决策树。从那里起步，压力会小很多。
+  </p>
+
+  <hr>
+
+  <p>
+    总体而言，<a href="https://pg-gamesimulator.com">pg模拟器</a> 适合那些愿意花一点时间理解配置逻辑的尝试者。它不承诺“瞬间完成复杂模拟”，但提供了一套可以清晰追溯每一步推理的环境。保持规则简洁，定期清理临时变量，你会逐渐感受到这种工具带来的可控感。
+  </p>
+
+  <div class="footer-meta">
+    最后修订于 2025 · 本页仅为使用经验分享，不构成官方指南
+  </div>
+
+</div>
+</body>
+</html>
